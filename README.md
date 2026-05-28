@@ -36,7 +36,8 @@ A comprehensive product inventory management system built with FastAPI backend a
 ## Project Structure
 
 ```
-stocksphere/
+fastapi-demo/
+├── frontend/        # React frontend application
 ├── main.py          # FastAPI application with endpoints
 ├── models.py        # Pydantic models
 ├── .gitignore       # Git ignore file
