@@ -56,6 +56,6 @@ def update_product(id: int, product: Product):
     for i in range(len(products)):
         if products[i].id == id:
             products[i] = product
-            return "product added successfully"
+            return "product updated successfully"
     
     return f"product with id: {id} not found"
