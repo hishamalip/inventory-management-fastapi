@@ -1,7 +1,12 @@
 from fastapi import FastAPI
 from models import Product
+from database import session, engine
+import database_model 
 
 app = FastAPI()
+
+# To create database tables
+database_model.Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def greet():
@@ -16,11 +21,27 @@ products = [
     Product(id=3, name="mouse", description="wireless mouse", price=52.5, quantity=4)
 ]
 
+
+# Intialize database with products
+def init_db():
+    db = session()
+
+    count = db.query(database_model.Product).count()
+    print(count)
+    if count == 0:
+        for product in products:
+            print(product.model_dump)
+            db.add(database_model.Product(**product.model_dump()))
+        db.commit()
+
+init_db()
+
 # get all products
 @app.get("/products/")
 def get_all_products():
-    return products
-
+    db = session()
+    query = db.query(Product)
+    return query.all()
 
 # get a single product
 @app.get("/product/{id}")
