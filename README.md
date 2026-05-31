@@ -37,9 +37,10 @@ A comprehensive product inventory management system built with FastAPI backend a
 
 ```
 fastapi-demo/
-├── frontend/        # React frontend application
 ├── main.py          # FastAPI application with endpoints
 ├── models.py        # Pydantic models
+├── database_models.py        # SQLAlchemy database models
+├── database.py      # Database connection and session management
 ├── .gitignore       # Git ignore file
 └── README.md        # This file
 ```

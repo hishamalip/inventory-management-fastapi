@@ -75,7 +75,7 @@ def add_product(product: Product, db: Session = Depends(get_db)):
 
 
 # update a product
-@app.put("/products/")
+@app.put("/products/{id}")
 def update_product(id: int, product: Product, db: Session = Depends(get_db)):
     db_product = db.query(database_model.Product).filter(database_model.Product.id == id).first()
     if db_product:
