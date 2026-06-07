@@ -3,15 +3,16 @@ from models import Product
 from database import session, engine
 import database_model
 from sqlalchemy.orm import Session
+import time
 
 app = FastAPI()
 
 # To create database tables
-database_model.Base.metadata.create_all(bind=engine)
+# database_model.Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def greet():
-    return "Welcome to FastAPI by Hisham"
+    return "Welcome to FastAPI by Hisham..."
 
 
 
@@ -47,7 +48,8 @@ def init_db():
 
 
 # Intialize db
-init_db()
+# time.sleep(3)
+# init_db()
 
 
 # get all products
