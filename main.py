@@ -1,20 +1,16 @@
 from fastapi import FastAPI, Depends
 from models import Product
-from database import session, engine
+from database import get_db, session, engine
 import database_model
 from sqlalchemy.orm import Session
-import time
 
+
+# initialize FastAPI app
 app = FastAPI()
 
+
 # To create database tables
-# database_model.Base.metadata.create_all(bind=engine)
-
-@app.get("/")
-def greet():
-    return "Welcome to FastAPI by Hisham..."
-
-
+database_model.Base.metadata.create_all(bind=engine)
 
 
 products = [
@@ -24,20 +20,9 @@ products = [
 ]
 
 
-# Create get db dependency
-def get_db():
-    db = session()
-
-    try:
-        yield db
-    finally:
-        db.close()
-
-
 # Intialize database with products
 def init_db():
     db = session()
-
     count = db.query(database_model.Product).count()
     print(count)
     if count == 0:
@@ -46,11 +31,13 @@ def init_db():
             db.add(database_model.Product(**product.model_dump()))
         db.commit()
 
-
 # Intialize db
-# time.sleep(3)
-# init_db()
+init_db()
 
+
+@app.get("/")
+def greet():
+    return "Welcome to FastAPI by Hisham..."
 
 # get all products
 @app.get("/products/")
