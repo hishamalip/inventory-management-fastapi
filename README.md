@@ -1,5 +1,5 @@
 
-# Hisham - Product Inventory Management
+# Product Inventory Management
 
 A modern product inventory management system built with FastAPI and PostgreSQL, providing a robust RESTful API for tracking and managing product inventory.
 
